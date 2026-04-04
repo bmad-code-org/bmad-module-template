@@ -1,139 +1,85 @@
 # BMad Module Template
 
-A template for creating BMad Method modules that can be published to npm and installed via the BMad installer.
+A minimal template for creating [BMad Method](https://docs.bmad-method.org/) modules. Fork this repo or use it as a GitHub template to start building your own module.
 
 ## Quick Start
 
-After creating a new repo from this template:
+1. Click **Use this template** on GitHub (or fork the repo)
+2. Rename `skills/my-skill/` to your skill name
+3. Edit `skills/my-skill/SKILL.md` with your skill's instructions
+4. Update `.claude-plugin/marketplace.json` with your module info
+5. Update `LICENSE` with your name and year
+6. Replace this README with what your module does
+
+## Structure
+
+```
+your-module/
+├── .claude-plugin/
+│   └── marketplace.json       # Module manifest (required for installation)
+├── skills/
+│   └── my-skill/              # Rename to your skill name
+│       ├── SKILL.md           # Skill instructions
+│       ├── prompts/           # Internal capability prompts (optional)
+│       ├── scripts/           # Deterministic scripts (optional)
+│       └── assets/            # Module registration files (optional)
+├── docs/                      # Documentation (optional, GitHub Pages ready)
+├── LICENSE
+└── README.md
+```
+
+## Building with BMad Builder
+
+You don't have to write skills from scratch. The [BMad Builder](https://bmad-builder-docs.bmad-method.org/) provides guided tools for creating production-quality skills:
+
+- **[Agent Builder](https://bmad-builder-docs.bmad-method.org/reference/builder-commands)** — Build agent skills through conversational discovery
+- **[Workflow Builder](https://bmad-builder-docs.bmad-method.org/reference/builder-commands)** — Build workflow and utility skills
+- **[Module Builder](https://bmad-builder-docs.bmad-method.org/reference/builder-commands)** — Package skills into an installable module with help system registration
+- **[Build Your First Module](https://bmad-builder-docs.bmad-method.org/tutorials/build-your-first-module)** — Full walkthrough from idea to distributable module
+
+The Module Builder can scaffold registration files (`module.yaml`, `module-help.csv`, merge scripts) so your module integrates with the BMad help system.
+
+## Adding More Skills
+
+Add skill directories under `skills/` and list them in `marketplace.json`:
+
+```json
+"skills": [
+  "./skills/my-agent",
+  "./skills/my-workflow"
+]
+```
+
+## Documentation
+
+A `docs/` folder is included for your module's documentation. Publish it with [GitHub Pages](https://docs.github.com/en/pages) or any static site host. For a richer docs site, consider [Starlight](https://starlight.astro.build/) (used by the official BMad modules).
+
+## Installation
+
+Users install your module with:
 
 ```bash
-npm install
+npx bmad-method install --custom-content https://github.com/your-org/your-module
 ```
 
-## Setup Checklist
+See [Distribute Your Module](https://bmad-builder-docs.bmad-method.org/how-to/distribute-your-module) for full details on repo structure, the marketplace.json format, and versioning.
 
-### 1. Update package.json
+## Publishing to the Marketplace
 
-Replace the placeholder values:
+Once your module is stable, you can list it in the [BMad Plugins Marketplace](https://github.com/bmad-code-org/bmad-plugins-marketplace) for broader discovery:
 
-- `name`: Your package name (e.g., `@bmad-method/your-module`)
-- `description`: What your module does
-- `author`: Your name
-- `repository.url`: Your git repository URL
-- `keywords`: Add relevant search terms
+1. Tag a release (e.g., `v1.0.0`)
+2. Open a PR to the marketplace repo adding a registry entry to `registry/community/`
+3. Your module goes through automated validation and manual review
 
-### 2. Update this README.md
+Review the marketplace [contribution guide](https://github.com/bmad-code-org/bmad-plugins-marketplace/blob/main/CONTRIBUTING.md) and [governance policy](https://github.com/bmad-code-org/bmad-plugins-marketplace/blob/main/GOVERNANCE.md) before submitting.
 
-Remove these template instructions and add:
-- What your module does
-- How to use it
-- Any specific configuration needed
+## Resources
 
-### 3. Add your module content
-
-All module content goes under `src/`:
-
-```
-src/
-├── module.yaml       # Module metadata and install questions
-├── agents/           # BMad agents
-├── workflows/        # Agent workflows
-└── tools/            # Small reusable tools
-```
-
-## Module Conventions
-
-- **module.yaml**: Defines install questions and defaults
-- **agents/**: All BMad agents go here
-- **workflows/**: Agent workflows or direct-call workflows
-- **tools/**: Small, single-purpose prompt files
-- Use relative paths in all workflows/agents for portability
-
-## Publishing to NPM
-
-### First-time setup
-
-1. Create an npm automation token at <https://www.npmjs.com/settings>/tokens
-2. Add it as a GitHub secret named `NPM_TOKEN` in your repo settings:
-   ```bash
-   gh secret set NPM_TOKEN --repo YOUR-ORG/YOUR-REPO
-   ```
-
-### Release a new version
-
-The module includes release scripts that handle versioning and publishing:
-
-```bash
-# Patch release (0.1.0 -> 0.1.1)
-npm run release
-
-# Minor release (0.1.0 -> 0.2.0)
-npm run release:minor
-
-# Major release (0.1.0 -> 1.0.0)
-npm run release:major
-
-# Prerelease (0.1.0 -> 0.1.1-0)
-npm run release:prerelease
-```
-
-These scripts:
-1. Update the version in package.json
-2. Create a git tag
-3. Push the tag to GitHub
-4. Trigger the publish workflow which publishes to npm
-
-### Manual tag release
-
-You can also create tags manually:
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-## Workflows
-
-The module includes GitHub Actions workflows:
-
-- **publish.yaml**: Automatically publishes to npm when a version tag is pushed
-- **quality.yaml**: Runs linting and formatting checks
-- **docs.yaml**: Builds documentation
-- **discord.yaml**: Posts updates to Discord (configure if needed)
-
-## Development
-
-```bash
-# Run linting
-npm run lint
-
-# Fix formatting
-npm run format:fix
-
-# Run tests
-npm test
-```
-
-## Module Installation (for users)
-
-Once published, users can install your module via the BMad Method installer or npm:
-
-```bash
-# Via BMad installer
-npx bmad-method install
-
-# Via npm
-npm install your-module-name
-```
+- [BMad Method Documentation](https://docs.bmad-method.org/) — Core framework
+- [BMad Builder Documentation](https://bmad-builder-docs.bmad-method.org/) — Build agents, workflows, and modules
+- [BMad Plugins Marketplace](https://github.com/bmad-code-org/bmad-plugins-marketplace) — Registry, categories, and submission process
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-**Your Module Name** — Part of the [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD) ecosystem.
-
-[![Contributors](https://contrib.rocks/image?repo=bmad-code-org/YOUR-REPO-NAME)](https://github.com/bmad-code-org/YOUR-REPO-NAME/graphs/contributors)
-
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) for contributor information.
+MIT — update `LICENSE` with your own copyright.
