@@ -80,6 +80,17 @@ Review the marketplace [contribution guide](https://github.com/bmad-code-org/bma
 - [BMad Builder Documentation](https://bmad-builder-docs.bmad-method.org/) — Build agents, workflows, and modules
 - [BMad Plugins Marketplace](https://github.com/bmad-code-org/bmad-plugins-marketplace) — Registry, categories, and submission process
 
+## Community
+
+- [Discord](https://discord.gg/gk8jAdXWmj) — Get help, share ideas, collaborate
+- [YouTube](https://youtube.com/@BMadCode) — Tutorials, master class, and more
+- [X / Twitter](https://x.com/BMadCode)
+- [Website](https://bmadcode.com)
+
+## Support BMad
+
+BMad is free for everyone and always will be. Star this repo, [buy me a coffee](https://buymeacoffee.com/bmad), or email contact@bmadcode.com for corporate sponsorship.
+
 ## License
 
 MIT — update `LICENSE` with your own copyright.
