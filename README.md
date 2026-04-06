@@ -1,5 +1,8 @@
 # BMad Module Template
 
+[![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue?logo=python&logoColor=white)](https://www.python.org)
+[![uv](https://img.shields.io/badge/uv-package%20manager-blueviolet?logo=uv)](https://docs.astral.sh/uv/)
+
 A minimal template for creating [BMad Method](https://docs.bmad-method.org/) modules. Fork this repo or use it as a GitHub template to start building your own module.
 
 ## Quick Start
